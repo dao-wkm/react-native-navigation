@@ -4,8 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
+import android.view.View;
+import android.graphics.drawable.Drawable;
+import android.graphics.Canvas;
+import android.widget.ImageView;
+import java.util.List;
+import java.util.Map;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.R;
 import com.reactnativenavigation.BuildConfig;
 import com.reactnativenavigation.parse.params.Text;
 import com.reactnativenavigation.utils.CompatUtils;
@@ -14,6 +21,9 @@ import static com.reactnativenavigation.utils.ObjectUtils.perform;
 
 @SuppressLint("ViewConstructor")
 public class BottomTabs extends AHBottomNavigation {
+    private List<Drawable> drawables;
+    private Map<String, Integer> drawablesMap;
+
     public BottomTabs(Context context) {
         super(context);
         setId(CompatUtils.generateViewId());
@@ -45,5 +55,24 @@ public class BottomTabs extends AHBottomNavigation {
     @Override
     public void setTitleState(TitleState titleState) {
         if (getTitleState() != titleState) super.setTitleState(titleState);
+    }
+
+    public void setSelectedDrawables(List<Drawable> drawables, Map<String, Integer> drawablesMap) {
+        this.drawables = drawables;
+        this.drawablesMap = drawablesMap;
+    }
+
+    public void setSelectedIcon(int bottomTabIndex) {
+        String key = "tab" + bottomTabIndex;
+        if (this.drawablesMap.containsKey(key)) {
+            View view = this.getViewAtPosition(bottomTabIndex);
+            ImageView icon = (ImageView) view.findViewById(R.id.bottom_navigation_item_icon);
+            if (icon == null) icon = (ImageView) view.findViewById(R.id.bottom_navigation_small_item_icon);
+            Drawable drawable = this.drawables.get(this.drawablesMap.get(key));
+            icon.setImageDrawable(drawable);
+        }
+    }
+     protected void onDraw(Canvas canvas){
+        setSelectedIcon(getCurrentItem());
     }
 }

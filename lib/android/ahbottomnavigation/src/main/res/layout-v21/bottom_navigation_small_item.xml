@@ -12,7 +12,6 @@
         android:layout_width="@dimen/bottom_navigation_icon"
         android:layout_height="@dimen/bottom_navigation_icon"
         android:layout_gravity="center"
-        android:layout_marginBottom="4dp"
         android:gravity="center" />
 
     <com.aurelhubert.ahbottomnavigation.AHTextView

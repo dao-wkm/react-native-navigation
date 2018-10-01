@@ -25,7 +25,7 @@ public class TopBarController {
     }
 
     public void clear() {
-        topBar.clear();
+        if (topBar != null) topBar.clear();
     }
 
     public TopBar getView() {

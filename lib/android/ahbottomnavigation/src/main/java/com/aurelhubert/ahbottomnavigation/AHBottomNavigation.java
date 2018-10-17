@@ -37,6 +37,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 import com.aurelhubert.ahbottomnavigation.notification.AHNotificationHelper;
@@ -393,7 +394,7 @@ public class AHBottomNavigation extends FrameLayout {
 			AHBottomNavigationItem item = items.get(itemIndex);
 
 			View view = inflater.inflate(R.layout.bottom_navigation_item, this, false);
-			FrameLayout container = view.findViewById(R.id.bottom_navigation_container);
+			RelativeLayout container = view.findViewById(R.id.bottom_navigation_container);
 			ImageView icon = view.findViewById(R.id.bottom_navigation_item_icon);
 //			AHTextView title = view.findViewById(R.id.bottom_navigation_item_title);
             AHTextView notification = view.findViewById(R.id.bottom_navigation_notification);
@@ -751,7 +752,7 @@ public class AHBottomNavigation extends FrameLayout {
 
 			if (i == itemIndex) {
 
-				final FrameLayout container = view.findViewById(R.id.bottom_navigation_small_container);
+				final RelativeLayout container = view.findViewById(R.id.bottom_navigation_small_container);
 //				final AHTextView title = view.findViewById(R.id.bottom_navigation_small_item_title);
 				final ImageView icon = view.findViewById(R.id.bottom_navigation_small_item_icon);
 				final AHTextView notification = view.findViewById(R.id.bottom_navigation_notification);
